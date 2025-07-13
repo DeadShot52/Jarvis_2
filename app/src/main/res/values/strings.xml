@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Friday AI</string>
+    <string name="developer_name">Paras Gusain</string>
+    <string name="app_description">Iron Man Inspired Voice Assistant</string>
+    <string name="internet_permission_explanation">Friday AI needs internet access to connect to voice processing services and provide intelligent responses.</string>
+    <string name="microphone_permission_explanation">Friday AI needs microphone access to hear and respond to your voice commands.</string>
+    <string name="version_info">Developed by Paras Gusain • Version 1.0</string>
 </resources>

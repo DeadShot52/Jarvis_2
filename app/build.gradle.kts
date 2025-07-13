@@ -18,6 +18,13 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        
+        // Developer Information
+        manifestPlaceholders["developer_name"] = "Paras Gusain"
+        manifestPlaceholders["app_description"] = "Friday AI - Iron Man Inspired Voice Assistant"
+        
+        // Responsive design configuration
+        resConfigs("en", "xxhdpi", "xhdpi", "hdpi", "mdpi")
     }
 
     buildTypes {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default dimensions for normal screens -->
+    <dimen name="voice_visualizer_height">80dp</dimen>
+    <dimen name="voice_visualizer_width_percent">0.9</dimen>
+    <dimen name="chat_container_height_percent">0.85</dimen>
+    <dimen name="padding_standard">16dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="text_size_message">18sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="chat_bubble_padding">12dp</dimen>
+    <dimen name="corner_radius">12dp</dimen>
+    <dimen name="min_touch_target">48dp</dimen>
+</resources>
