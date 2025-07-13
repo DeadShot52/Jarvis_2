@@ -5,4 +5,40 @@
     <string name="internet_permission_explanation">Friday AI needs internet access to connect to voice processing services and provide intelligent responses.</string>
     <string name="microphone_permission_explanation">Friday AI needs microphone access to hear and respond to your voice commands.</string>
     <string name="version_info">Developed by Paras Gusain • Version 1.0</string>
+    
+    <!-- Sign-in and User Management -->
+    <string name="welcome_title">Welcome to Friday AI</string>
+    <string name="welcome_subtitle">Your personal AI assistant, just like Tony Stark\'s Friday</string>
+    <string name="setup_voice_title">Voice Recognition Setup</string>
+    <string name="setup_voice_subtitle">Let Friday learn your voice for secure authentication</string>
+    <string name="record_voice_instruction">Please say: \"Hello Friday, this is %s\"</string>
+    <string name="voice_training_complete">Voice pattern recorded successfully!</string>
+    <string name="setup_personality_title">Customize Friday\'s Personality</string>
+    <string name="personality_humor_level">Humor Level</string>
+    <string name="personality_formality">Formality Level</string>
+    <string name="personality_proactiveness">Proactiveness</string>
+    
+    <!-- User Profile -->
+    <string name="enter_your_name">Enter your name</string>
+    <string name="setup_preferences">Setup Preferences</string>
+    <string name="preferred_apps">Preferred Apps</string>
+    <string name="daily_routine">Daily Routine</string>
+    <string name="smart_home_devices">Smart Home Devices</string>
+    
+    <!-- Authentication -->
+    <string name="voice_authentication">Voice Authentication</string>
+    <string name="speak_to_unlock">Say \"Hello Friday\" to continue</string>
+    <string name="voice_not_recognized">Voice not recognized. Please try again.</string>
+    <string name="authentication_success">Welcome back, %s!</string>
+    
+    <!-- Advanced Features -->
+    <string name="automation_title">Smart Automation</string>
+    <string name="create_routine">Create Routine</string>
+    <string name="app_integration">App Integration</string>
+    <string name="privacy_settings">Privacy Settings</string>
+    <string name="cloud_sync">Cloud Sync</string>
+    <string name="entertainment_hub">Entertainment Hub</string>
+    
+    <!-- Accessibility Service -->
+    <string name="accessibility_service_description">Friday AI uses accessibility service to control other apps and provide seamless assistance across your device.</string>
 </resources>

@@ -70,18 +70,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FridayAI"
         tools:targetApi="31">
+        <!-- Welcome Activity - First Launch -->
         <activity
-            android:name=".MainActivity"
+            android:name=".WelcomeActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.FridayAI"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:windowSoftInputMode="adjustResize"
-            android:launchMode="singleTop">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        
+        <!-- User Setup Activity -->
+        <activity
+            android:name=".UserSetupActivity"
+            android:exported="false"
+            android:label="Friday AI Setup"
+            android:theme="@style/Theme.FridayAI"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:windowSoftInputMode="adjustResize" />
+            
+        <!-- Voice Authentication Activity -->
+        <activity
+            android:name=".VoiceAuthActivity"
+            android:exported="false"
+            android:label="Voice Authentication"
+            android:theme="@style/Theme.FridayAI"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:windowSoftInputMode="adjustResize" />
+        
+        <!-- Main Activity - Friday AI Assistant -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.FridayAI"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
+            android:launchMode="singleTop">
             
             <!-- Voice Assistant Intent Filters -->
             <intent-filter>

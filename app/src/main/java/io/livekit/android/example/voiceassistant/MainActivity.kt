@@ -50,6 +50,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LiveKit.loggingLevel = LoggingLevel.DEBUG
+        
+        // Start Friday AI background service for system-wide assistance
+        FridayBackgroundService.startService(this)
+        
+        // Log that Friday AI is now active
+        FridayErrorHandler.logEvent("MainActivity", "Friday AI started - Welcome!")
+        
         requireNeededPermissions {
             requireToken { url, token ->
                 setContent {
