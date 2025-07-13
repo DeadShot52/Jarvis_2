@@ -12,6 +12,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,7 +42,7 @@ import io.livekit.android.compose.state.rememberVoiceAssistant
 import io.livekit.android.compose.ui.audio.VoiceAssistantBarVisualizer
 import io.livekit.android.example.voiceassistant.datastreams.rememberTranscriptions
 import io.livekit.android.example.voiceassistant.ui.UserTranscription
-import io.livekit.android.example.voiceassistant.ui.theme.LiveKitVoiceAssistantExampleTheme
+import io.livekit.android.example.voiceassistant.ui.theme.FridayAITheme
 import io.livekit.android.util.LoggingLevel
 
 class MainActivity : ComponentActivity() {
@@ -46,7 +52,7 @@ class MainActivity : ComponentActivity() {
         requireNeededPermissions {
             requireToken { url, token ->
                 setContent {
-                    LiveKitVoiceAssistantExampleTheme(dynamicColor = false) {
+                    FridayAITheme(dynamicColor = false) {
                         Surface {
                             VoiceAssistant(
                                 url,
@@ -146,11 +152,13 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.align(Alignment.CenterEnd)
                                 )
                             } else {
+                                // Friday AI responses - display with personality
                                 Text(
                                     text = transcription.transcriptionSegment.text,
                                     fontWeight = FontWeight.Light,
                                     fontSize = 20.sp,
-                                    modifier = Modifier.align(Alignment.CenterStart)
+                                    modifier = Modifier.align(Alignment.CenterStart),
+                                    color = MaterialTheme.colorScheme.primary
                                 )
                             }
                         }

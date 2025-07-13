@@ -39,14 +39,14 @@ fun UserTranscription(
     ) {
         Box(
             modifier = modifier
-                .clip(RoundedCornerShape(8.dp, 2.dp, 8.dp, 8.dp))
-                .background(Color.LightGray)
+                .clip(RoundedCornerShape(12.dp, 4.dp, 12.dp, 12.dp))
+                .background(Color(0xFF00E5FF).copy(alpha = 0.1f))
         ) {
             Text(
                 text = transcription.text,
                 fontWeight = FontWeight.Medium,
-                modifier = Modifier.padding(8.dp),
-                color = Color.Black
+                modifier = Modifier.padding(12.dp),
+                color = Color(0xFF00E5FF)
             )
         }
     }

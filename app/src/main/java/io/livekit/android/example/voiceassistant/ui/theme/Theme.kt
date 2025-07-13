@@ -17,35 +17,34 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = BlueMain,
-    secondary = PurpleGrey80,
-    tertiary = Pink80,
-    background = Color.Black,
-    onBackground = Color.White,
+    primary = FridayBlue,
+    secondary = FridayAccent,
+    tertiary = FridayGlow,
+    background = FridayDark,
+    onBackground = FridayBlueLight,
+    surface = Color(0xFF1A2332),
+    onSurface = FridayBlueLight,
+    surfaceVariant = Color(0xFF263238),
+    onSurfaceVariant = FridayBlue,
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = BlueMain,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-    background = Color(0xFFFFFBFE),
-    onBackground = Color(0xFF1C1B1F),
-
-    /* Other default colors to override
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = FridayBlueDark,
+    secondary = FridayAccent,
+    tertiary = FridayGlow,
+    background = Color(0xFFF0F8FF),
+    onBackground = FridayDark,
+    surface = Color(0xFFE8F4FD),
+    onSurface = FridayDark,
+    surfaceVariant = Color(0xFFE0F2F1),
+    onSurfaceVariant = FridayBlueDark,
 )
 
 @Composable
-fun LiveKitVoiceAssistantExampleTheme(
+fun FridayAITheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // Disabled to maintain Friday AI aesthetic
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
