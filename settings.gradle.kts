@@ -24,7 +24,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LiveKit Voice Assistant Example"
+rootProject.name = "Friday AI"
 include(":app")
 
 // For local development with the LiveKit Android SDK only.

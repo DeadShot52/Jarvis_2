@@ -39,25 +39,32 @@ fun rememberTranscriptions(room: Room): List<Transcription> {
     DisposableEffect(room) {
         room.registerTextStreamHandler(TRANSCRIPTION_TOPIC) { receiver, identity ->
             coroutineScope.launch(Dispatchers.IO) {
-                // Prepare for incoming transcription
-                val segment = createTranscriptionSegment(streamInfo = receiver.info)
-                val stringBuilder = StringBuilder()
+                try {
+                    // Prepare for incoming transcription
+                    val segment = createTranscriptionSegment(streamInfo = receiver.info)
+                    val stringBuilder = StringBuilder()
 
-                // Collect the incoming transcription stream.
-                receiver.flow.collect { transcription ->
-                    stringBuilder.append(transcription)
+                    // Collect the incoming transcription stream.
+                    receiver.flow.collect { transcription ->
+                        if (transcription.isNotBlank()) {
+                            stringBuilder.append(transcription)
 
-                    transcriptions.mergeNewSegments(
-                        listOf(
-                            Transcription(
-                                identity = identity,
-                                segment.copy(
-                                    text = stringBuilder.toString(),
-                                    lastReceivedTime = Date().time
+                            transcriptions.mergeNewSegments(
+                                listOf(
+                                    Transcription(
+                                        identity = identity,
+                                        segment.copy(
+                                            text = stringBuilder.toString().trim(),
+                                            lastReceivedTime = Date().time
+                                        )
+                                    )
                                 )
                             )
-                        )
-                    )
+                        }
+                    }
+                } catch (e: Exception) {
+                    // Handle transcription errors gracefully
+                    println("Friday AI: Error processing transcription - ${e.message}")
                 }
             }
         }

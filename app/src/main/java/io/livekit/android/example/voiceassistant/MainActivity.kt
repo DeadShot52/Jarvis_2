@@ -40,6 +40,7 @@ import io.livekit.android.annotations.Beta
 import io.livekit.android.compose.local.RoomScope
 import io.livekit.android.compose.state.rememberVoiceAssistant
 import io.livekit.android.compose.ui.audio.VoiceAssistantBarVisualizer
+import io.livekit.android.compose.state.VoiceAssistant
 import io.livekit.android.example.voiceassistant.datastreams.rememberTranscriptions
 import io.livekit.android.example.voiceassistant.ui.UserTranscription
 import io.livekit.android.example.voiceassistant.ui.theme.FridayAITheme
@@ -80,26 +81,40 @@ class MainActivity : ComponentActivity() {
                 val voiceAssistant = rememberVoiceAssistant()
 
                 val agentState = voiceAssistant.state
-                // Optionally do something with the agent state.
+                // Handle agent state changes with proper error handling
                 LaunchedEffect(key1 = agentState) {
-                    Timber.i { "agent state: $agentState" }
+                    Timber.i { "Friday AI agent state: $agentState" }
+                    when (agentState) {
+                        is VoiceAssistant.State.Listening -> {
+                            Timber.d { "Friday AI is listening..." }
+                        }
+                        is VoiceAssistant.State.Thinking -> {
+                            Timber.d { "Friday AI is thinking..." }
+                        }
+                        is VoiceAssistant.State.Speaking -> {
+                            Timber.d { "Friday AI is speaking..." }
+                        }
+                        else -> {
+                            Timber.d { "Friday AI state: $agentState" }
+                        }
+                    }
                 }
 
-                // Amplitude visualization of the Assistant's voice track.
+                // Friday AI voice visualization - enhanced with glow effect
                 VoiceAssistantBarVisualizer(
                     voiceAssistant = voiceAssistant,
                     modifier = Modifier
-                        .padding(8.dp)
+                        .padding(16.dp)
                         .fillMaxWidth()
                         .constrainAs(audioVisualizer) {
-                            height = Dimension.percent(0.1f)
-                            width = Dimension.percent(0.8f)
+                            height = Dimension.percent(0.12f)
+                            width = Dimension.percent(0.9f)
 
-                            top.linkTo(parent.top, 8.dp)
+                            top.linkTo(parent.top, 16.dp)
                             start.linkTo(parent.start)
                             end.linkTo(parent.end)
                         },
-                    brush = SolidColor(MaterialTheme.colorScheme.onBackground)
+                    brush = SolidColor(MaterialTheme.colorScheme.primary)
                 )
 
                 // Get and display the transcriptions.
@@ -154,7 +169,11 @@ class MainActivity : ComponentActivity() {
                             } else {
                                 // Friday AI responses - display with personality
                                 Text(
-                                    text = transcription.transcriptionSegment.text,
+                                    text = if (transcription.transcriptionSegment.text.isEmpty()) {
+                                        "Friday AI is thinking..."
+                                    } else {
+                                        transcription.transcriptionSegment.text
+                                    },
                                     fontWeight = FontWeight.Light,
                                     fontSize = 20.sp,
                                     modifier = Modifier.align(Alignment.CenterStart),

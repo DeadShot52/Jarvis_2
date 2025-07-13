@@ -23,11 +23,13 @@ const val sandboxID = ""
 fun ComponentActivity.requireToken(onTokenGenerated: (url: String, token: String) -> Unit) {
     if (sandboxID.isEmpty()) {
         runOnUiThread {
+            // Use Friday AI error handling system
+            FridayErrorHandler.handleError(this, FridayErrorHandler.FridayError.ConfigurationError)
+            
             // NOTE: If you prefer not to use LiveKit Sandboxes for testing, you can generate your
             // tokens manually by visiting https://cloud.livekit.io/projects/p_/settings/keys
             // and using one of your API Keys to generate a token with custom TTL and permissions.
-            onTokenGenerated("MY_WS_URL", "MY_TOKEN")
-            Timber.w { "sandboxID not populated, using default URL and token." }
+            FridayErrorHandler.logEvent("Configuration", "sandboxID not populated")
         }
         return
     }
@@ -42,14 +44,9 @@ fun ComponentActivity.requireToken(onTokenGenerated: (url: String, token: String
 
     client.newCall(request).enqueue(object : Callback {
         override fun onFailure(call: Call, e: IOException) {
-            e.printStackTrace()
             runOnUiThread {
-                Toast.makeText(
-                    activity,
-                    "Failed to fetch connection details",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
+                FridayErrorHandler.handleError(activity, FridayErrorHandler.FridayError.NetworkError)
+                FridayErrorHandler.logEvent("Network", "Failed to fetch connection details: ${e.message}")
             }
         }
 
@@ -64,15 +61,12 @@ fun ComponentActivity.requireToken(onTokenGenerated: (url: String, token: String
                     val cd = Gson().fromJson(json, ConnectionDetails::class.java)
                     runOnUiThread {
                         onTokenGenerated(cd.serverUrl, cd.participantToken)
+                        FridayErrorHandler.logEvent("Authentication", "Token generated successfully")
                     }
                 } else {
                     runOnUiThread {
-                        Toast.makeText(
-                            activity,
-                            "Failed to parse connection details",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        FridayErrorHandler.handleError(activity, FridayErrorHandler.FridayError.TokenError)
+                        FridayErrorHandler.logEvent("Authentication", "Failed to parse connection details")
                     }
                 }
             }

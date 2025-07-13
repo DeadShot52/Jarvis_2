@@ -36,8 +36,11 @@ fun ComponentActivity.requireNeededPermissions(onPermissionsGranted: (() -> Unit
             }
         }
 
-    val neededPermissions = listOf(Manifest.permission.RECORD_AUDIO)
-        .filter { ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_DENIED }
+    val neededPermissions = listOf(
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.MODIFY_AUDIO_SETTINGS,
+        Manifest.permission.CAMERA
+    ).filter { ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_DENIED }
         .toTypedArray()
 
     if (neededPermissions.isNotEmpty()) {

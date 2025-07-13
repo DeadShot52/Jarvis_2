@@ -5,10 +5,10 @@
 -->
 <data-extraction-rules>
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
-        -->
+        <!-- Friday AI backup configuration -->
+        <include domain="sharedpref" path="."/>
+        <exclude domain="sharedpref" path="livekit_tokens.xml"/>
+        <exclude domain="database" path="voice_cache.db"/>
     </cloud-backup>
     <!--
     <device-transfer>
